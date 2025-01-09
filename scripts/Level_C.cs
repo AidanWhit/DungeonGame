@@ -1,3 +1,4 @@
+using CatShooter.scripts;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -6,16 +7,17 @@ using System.Linq;
 
 public partial class Level_C : Node2D
 {
+	
 	[Export]
-	private int height;
+	private int height; //Height of the level
 	[Export]
-	private int width;
+	private int width; //width of the level
 	[Export]
-	private int iterations;
+	private int iterations; //Number of times the walker will walk
 	[Export]
-	private int max_tiles;
+	private int max_tiles; // max number of tiles the walker can place per iteration
 	private TileMapLayer map_layer;
-	private int[,] tile_map;
+	private int[,] tile_map; // used to hold positions of placed tiles
 	private walker_c walker;
 	private HashSet<Vector2I> filled_tiles;
 	private int tile_set_id;
@@ -33,27 +35,41 @@ public partial class Level_C : Node2D
 		player = GetNode<CharacterBody2D>("/root/Level/Player");
 		tile_set_id = map_layer.TileSet.GetSourceId(0);
 		generateLevel();
-
-		Debug.WriteLine("Test in godot editor!");
-		
 	}
 
 	private void generateLevel(){
 		for (int i = 0; i < iterations; i++){
-			walker.walk(tile_map);
+			walker.walk(tile_map, 6);
 		}
 		celluar_automata();
+	}
+
+	private void place_player()
+	{
 		Random rand = new Random();
-		player.Position = filled_tiles.ElementAt(rand.Next(0, map_layer.GetUsedCellsById(tile_set_id, new Vector2I(0, 8)).Count)) * 16 - new Vector2I(8, 0);
+		List<Vector2I> floor_tiles = get_floor_tiles();
+		player.Position = floor_tiles.ElementAt(rand.Next(0, floor_tiles.Count));
+	}
+	private List<Vector2I> get_floor_tiles()
+	{
+		List<Vector2I> floor_tiles = new List<Vector2I>();
+		floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(0, 8)));
+        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(1, 8)));
+        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(0, 9)));
+        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(1, 9)));
+
+        return floor_tiles;
 	}
 	private void draw_map(){
 		for (int x = 0; x < width; x++){
 			for (int  y= 0; y < height; y++){
 				if (tile_map[x, y] == 1){
+					// Need to place a wall tile for some reason to get the best results
 					map_layer.SetCell(new Vector2I(x, y), tile_set_id, new Vector2I(0, 0));
 				}
 			}
 		}
+		//Adds walls to the placed tiles 
 		map_layer.SetCellsTerrainConnect(map_layer.GetUsedCells(), 0, 0, false);
 	}
 	public override void _Process(double delta)
@@ -70,11 +86,6 @@ public partial class Level_C : Node2D
 
 			walker = new walker_c(new Vector2(width / 2, height / 2), tile_map, filled_tiles, max_tiles);
 			generateLevel();
-			for (int x = 0; x < width; x++){
-				for (int y = 0; y < height; y++){
-					//Debug.WriteLine("Value at x,y: " + tile_map[x,y]);
-				}
-			}
 		}
 		base._Process(delta);
 	}
