@@ -42,23 +42,26 @@ public partial class Level_C : Node2D
 			walker.walk(tile_map, 6);
 		}
 		celluar_automata();
+
+		place_player();
 	}
 
 	private void place_player()
 	{
 		Random rand = new Random();
 		List<Vector2I> floor_tiles = get_floor_tiles();
-		player.Position = floor_tiles.ElementAt(rand.Next(0, floor_tiles.Count));
+
+		player.Position = floor_tiles.ElementAt(rand.Next(0, floor_tiles.Count)) * 16;
 	}
 	private List<Vector2I> get_floor_tiles()
 	{
 		List<Vector2I> floor_tiles = new List<Vector2I>();
-		floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(0, 8)));
-        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(1, 8)));
-        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(0, 9)));
-        floor_tiles.Concat(TileGetter.GetTiles(map_layer, new Vector2I(1, 9)));
+		floor_tiles.AddRange(TileGetter.GetTiles(map_layer, new Vector2I(0, 8)));
+		floor_tiles.AddRange(TileGetter.GetTiles(map_layer, new Vector2I(1, 8)));
+		floor_tiles.AddRange(TileGetter.GetTiles(map_layer, new Vector2I(0, 9)));
+		floor_tiles.AddRange(TileGetter.GetTiles(map_layer, new Vector2I(1, 9)));
 
-        return floor_tiles;
+		return floor_tiles;
 	}
 	private void draw_map(){
 		for (int x = 0; x < width; x++){
