@@ -174,8 +174,5 @@ position = Vector2(-0.5, 3)
 shape = SubResource("RectangleShape2D_le4hl")
 
 [node name="weapon" type="Sprite2D" parent="."]
-position = Vector2(20, -9)
+position = Vector2(-3, -1)
 texture = ExtResource("3_n00ni")
-
-[node name="FirePoint" type="Marker2D" parent="weapon"]
-position = Vector2(4, -0.5)

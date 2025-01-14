@@ -34,7 +34,7 @@ public partial class Level_C : Node2D
 		map_layer = GetNode<TileMapLayer>("/root/Level/TileMapLayer");
 		player = GetNode<CharacterBody2D>("/root/Level/Player");
 		tile_set_id = map_layer.TileSet.GetSourceId(0);
-		generateLevel();
+		//generateLevel();
 	}
 
 	private void generateLevel(){

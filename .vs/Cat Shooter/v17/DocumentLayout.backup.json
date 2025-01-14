@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\",
+  "WorkspaceRootPath": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|c:\\users\\a12wh\\documents\\godotgames\\cat-shooter\\scripts\\level_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|c:\\users\\a12wh\\documents\\godotgames\\cat-shooter\\dungeongame\\scripts\\level_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|solutionrelative:scripts\\level_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|c:\\users\\a12wh\\documents\\godotgames\\cat-shooter\\dungeongame\\scripts\\tilegetter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|solutionrelative:scripts\\tilegetter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|c:\\users\\a12wh\\documents\\godotgames\\cat-shooter\\dungeongame\\scripts\\walker_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{495C672E-B7A0-4492-BD08-75FADD2E50D5}|Cat Shooter.csproj|solutionrelative:scripts\\walker_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,15 +34,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TileGetter.cs",
+              "DocumentMoniker": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\TileGetter.cs",
+              "RelativeDocumentMoniker": "scripts\\TileGetter.cs",
+              "ToolTip": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\TileGetter.cs",
+              "RelativeToolTip": "scripts\\TileGetter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAB7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T03:10:24.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Level_C.cs",
-              "DocumentMoniker": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\scripts\\Level_C.cs",
+              "DocumentMoniker": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\Level_C.cs",
               "RelativeDocumentMoniker": "scripts\\Level_C.cs",
-              "ToolTip": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\scripts\\Level_C.cs",
+              "ToolTip": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\Level_C.cs",
               "RelativeToolTip": "scripts\\Level_C.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwC8AAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T03:25:00.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "walker_c.cs",
+              "DocumentMoniker": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\walker_c.cs",
+              "RelativeDocumentMoniker": "scripts\\walker_c.cs",
+              "ToolTip": "C:\\Users\\a12wh\\Documents\\GodotGames\\cat-shooter\\DungeonGame\\scripts\\walker_c.cs",
+              "RelativeToolTip": "scripts\\walker_c.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T02:52:33.14Z",
               "EditorCaption": ""
             }
           ]
