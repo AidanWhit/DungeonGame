@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://3tubwjicbnmw"]
+[gd_scene load_steps=30 format=3 uid="uid://3tubwjicbnmw"]
 
-[ext_resource type="Script" path="res://scenes/red_dino_enemy.gd" id="1_d6s6e"]
+[ext_resource type="Script" path="res://scripts/red_dino_enemy.gd" id="1_d6s6e"]
 [ext_resource type="Texture2D" uid="uid://bymat5j0738m4" path="res://sprites/Entities/DinoSprites - mort.png" id="1_fni4f"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_qn1ck"]
 [ext_resource type="Script" path="res://scripts/enemy_idle.gd" id="4_rvtwm"]
-[ext_resource type="Script" path="res://enemy_follow.gd" id="5_h5csx"]
+[ext_resource type="Script" path="res://scripts/enemy_follow.gd" id="5_h5csx"]
+[ext_resource type="PackedScene" uid="uid://dyp4ojovq0elh" path="res://scenes/health_component.tscn" id="6_inxuh"]
+[ext_resource type="PackedScene" uid="uid://cq8d67hl0uav4" path="res://scenes/Components/hit_box_component.tscn" id="7_unr17"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnt5d"]
 atlas = ExtResource("1_fni4f")
@@ -29,6 +31,18 @@ region = Rect2(528, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1xol"]
 atlas = ExtResource("1_fni4f")
 region = Rect2(552, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ktet"]
+atlas = ExtResource("1_fni4f")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjfm6"]
+atlas = ExtResource("1_fni4f")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0pah"]
+atlas = ExtResource("1_fni4f")
+region = Rect2(384, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k26of"]
 atlas = ExtResource("1_fni4f")
@@ -97,6 +111,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1ktet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjfm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0pah")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_k26of")
 }, {
 "duration": 1.0,
@@ -139,14 +167,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwcy4"]
 size = Vector2(15, 17)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bl7j"]
+size = Vector2(13, 13)
+
 [node name="red_dino" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_d6s6e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_531e1")
-animation = &"chase"
+animation = &"damaged"
 autoplay = "idle"
-frame_progress = 0.880332
+frame_progress = 0.575278
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 0.5)
@@ -163,3 +195,16 @@ enemy = NodePath("../..")
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_h5csx")
 enemy = NodePath("../..")
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_inxuh")]
+max_health = 3.0
+
+[node name="dino_hitbox" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_unr17")]
+collision_layer = 4
+collision_mask = 8
+collision_priority = 2.0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dino_hitbox"]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_7bl7j")

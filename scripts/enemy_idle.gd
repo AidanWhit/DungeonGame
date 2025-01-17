@@ -17,6 +17,8 @@ func Enter():
 	randomize_wander()
 	
 	player = get_tree().get_first_node_in_group("player")
+	
+	enemy.get
 
 func Update(delta: float):
 	if (wander_time > 0):

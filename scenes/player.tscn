@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://rhpv4m0icwo"]
+[gd_scene load_steps=27 format=3 uid="uid://rhpv4m0icwo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lal1h"]
 [ext_resource type="Texture2D" uid="uid://d030ock5cevqy" path="res://sprites/Entities/knight.png" id="1_o82hl"]
 [ext_resource type="Texture2D" uid="uid://cteygj210qkgr" path="res://sprites/weapons/39.png" id="3_n00ni"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="4_c5i7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgpdd"]
 atlas = ExtResource("1_o82hl")
@@ -161,6 +162,7 @@ animations = [{
 size = Vector2(11, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_lal1h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -175,7 +177,8 @@ shape = SubResource("RectangleShape2D_le4hl")
 
 [node name="weapon" type="Sprite2D" parent="."]
 position = Vector2(20, -9)
-texture = ExtResource("3_n00ni")
+script = ExtResource("4_c5i7x")
+gun_texture = ExtResource("3_n00ni")
 
 [node name="FirePoint" type="Marker2D" parent="weapon"]
 position = Vector2(4, -0.5)
