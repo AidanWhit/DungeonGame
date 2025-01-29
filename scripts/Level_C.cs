@@ -35,6 +35,9 @@ public partial class Level_C : Node2D
 		player = GetNode<CharacterBody2D>("/root/Level/Player");
 		tile_set_id = map_layer.TileSet.GetSourceId(0);
 		generateLevel();
+
+		var gdScript = ResourceLoader.Load<Script>("res://scripts/enemy_placer.gd");
+		gdScript.Call("get_floor_tiles", map_layer, player);
 	}
 
 	private void generateLevel(){

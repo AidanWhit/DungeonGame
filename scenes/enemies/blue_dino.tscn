@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://dpo0g16chx1fo"]
+
+[ext_resource type="Texture2D" uid="uid://c2oegk0h0oip6" path="res://sprites/Entities/DinoSprites - doux.png" id="1_70fmt"]
+[ext_resource type="Script" path="res://scripts/enemies/blue_dino.gd" id="1_x7qh3"]
+[ext_resource type="Script" path="res://scripts/StateMachine.gd" id="3_ahpbi"]
+[ext_resource type="Script" path="res://scripts/enemy_idle.gd" id="4_jws3a"]
+[ext_resource type="Texture2D" uid="uid://cteygj210qkgr" path="res://sprites/weapons/39.png" id="5_fd7q0"]
+[ext_resource type="Script" path="res://scripts/states/shoot.gd" id="5_qujh8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fi13"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlfbg"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jj6m"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ocw4"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlc4n"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feujc"]
+atlas = ExtResource("1_70fmt")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v31rf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fi13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlfbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jj6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ocw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlc4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feujc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_st0dc"]
+size = Vector2(10, 12)
+
+[node name="blue_dino" type="CharacterBody2D"]
+script = ExtResource("1_x7qh3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v31rf")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_st0dc")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ahpbi")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_jws3a")
+enemy = NodePath("../..")
+transition_state = "shoot"
+
+[node name="Shoot" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy", "enemy_weapon")]
+script = ExtResource("5_qujh8")
+enemy = NodePath("../..")
+enemy_weapon = NodePath("../../weapon")
+move_speed = 10.0
+
+[node name="weapon" type="Sprite2D" parent="."]
+position = Vector2(6, 1)
+texture = ExtResource("5_fd7q0")

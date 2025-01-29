@@ -1,28 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://rhpv4m0icwo"]
+[gd_scene load_steps=27 format=3 uid="uid://rhpv4m0icwo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_lal1h"]
 [ext_resource type="Texture2D" uid="uid://d030ock5cevqy" path="res://sprites/Entities/knight.png" id="1_o82hl"]
 [ext_resource type="Texture2D" uid="uid://cteygj210qkgr" path="res://sprites/weapons/39.png" id="3_n00ni"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="4_c5i7x"]
-[ext_resource type="PackedScene" uid="uid://dyp4ojovq0elh" path="res://scenes/Components/health_component.tscn" id="5_awbyy"]
-[ext_resource type="PackedScene" uid="uid://cq8d67hl0uav4" path="res://scenes/Components/hit_box_component.tscn" id="6_57swk"]
-[ext_resource type="Script" path="res://scripts/health_bar.gd" id="7_vpov5"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxw6i"]
-atlas = ExtResource("1_o82hl")
-region = Rect2(0, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4r1sn"]
-atlas = ExtResource("1_o82hl")
-region = Rect2(32, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yhqe0"]
-atlas = ExtResource("1_o82hl")
-region = Rect2(64, 192, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jl1xi"]
-atlas = ExtResource("1_o82hl")
-region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bgpdd"]
 atlas = ExtResource("1_o82hl")
@@ -108,26 +89,6 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jxw6i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4r1sn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yhqe0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yhqe0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jl1xi")
-}],
-"loop": true,
-"name": &"damaged",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_bgpdd")
 }, {
 "duration": 1.0,
@@ -200,24 +161,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_le4hl"]
 size = Vector2(11, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7j6cm"]
-size = Vector2(11, 14)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3kket"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig82p"]
-bg_color = Color(1, 0, 0, 1)
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
 script = ExtResource("1_lal1h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xm0bh")
-animation = &"damaged"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.294224
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 3)
@@ -227,30 +178,7 @@ shape = SubResource("RectangleShape2D_le4hl")
 position = Vector2(20, -9)
 script = ExtResource("4_c5i7x")
 gun_texture = ExtResource("3_n00ni")
+bullet_prefab = null
 
 [node name="FirePoint" type="Marker2D" parent="weapon"]
 position = Vector2(4, -0.5)
-
-[node name="HealthComponent" parent="." instance=ExtResource("5_awbyy")]
-max_health = 5.0
-
-[node name="HitBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_57swk")]
-collision_mask = 0
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
-position = Vector2(-0.5, 3)
-shape = SubResource("RectangleShape2D_7j6cm")
-
-[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health")]
-offset_left = -22.0
-offset_top = 12.0
-offset_right = 21.0
-offset_bottom = 18.0
-theme_override_styles/background = SubResource("StyleBoxFlat_3kket")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ig82p")
-max_value = 10.0
-value = 5.0
-show_percentage = false
-script = ExtResource("7_vpov5")
-health = NodePath("../HealthComponent")
