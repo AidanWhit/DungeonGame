@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfrgwd7hscikg"]
+
+[ext_resource type="Script" path="res://scripts/enemies/boid.gd" id="1_2s50e"]
+[ext_resource type="Texture2D" uid="uid://fnwgakcva47r" path="res://sprites/Entities/Fly.png" id="2_w1kth"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnl7i"]
+atlas = ExtResource("2_w1kth")
+region = Rect2(0, 0, 7, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubpv6"]
+atlas = ExtResource("2_w1kth")
+region = Rect2(7, 0, 7, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7cn1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnl7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubpv6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5xl0"]
+size = Vector2(7, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mvln4"]
+radius = 115.004
+
+[node name="Boid" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_2s50e")
+separation_dist = 1000.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_7cn1r")
+animation = &"idle"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.544723
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_c5xl0")
+
+[node name="View" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="View"]
+visible = false
+shape = SubResource("CircleShape2D_mvln4")
+
+[node name="rayfolder" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="rayfolder"]
+rotation = 3.01418
+
+[node name="RayCast2D2" type="RayCast2D" parent="rayfolder"]
+rotation = 3.19395
+target_position = Vector2(-0.536097, 47.0926)
+
+[node name="RayCast2D3" type="RayCast2D" parent="rayfolder"]
+rotation = 3.29867
+target_position = Vector2(-22.1893, 19.7139)
+
+[node name="RayCast2D4" type="RayCast2D" parent="rayfolder"]
+rotation = 0.314159
+target_position = Vector2(-24.6074, -7.7765)
+
+[connection signal="area_entered" from="View" to="." method="_on_view_area_entered"]
+[connection signal="area_exited" from="View" to="." method="_on_view_area_exited"]
+[connection signal="body_entered" from="View" to="." method="_on_view_body_entered"]
+[connection signal="body_exited" from="View" to="." method="_on_view_body_exited"]

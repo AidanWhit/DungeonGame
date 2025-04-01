@@ -1,7 +1,8 @@
 extends Sprite2D
 class_name player_weapon
 
-@onready var player : Player = get_owner()
+@onready var player : player_refactor = get_owner()
+
 var current_facing = player.FACING.RIGHT
 
 func position_weapon(sprite: Node2D) -> void:

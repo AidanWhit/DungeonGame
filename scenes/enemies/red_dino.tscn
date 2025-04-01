@@ -1,12 +1,12 @@
 [gd_scene load_steps=36 format=3 uid="uid://3tubwjicbnmw"]
 
-[ext_resource type="Script" path="res://scripts/red_dino_enemy.gd" id="1_d6s6e"]
+[ext_resource type="Script" path="res://scripts/enemies/red_dino_enemy.gd" id="1_d6s6e"]
 [ext_resource type="Texture2D" uid="uid://bymat5j0738m4" path="res://sprites/Entities/DinoSprites - mort.png" id="1_fni4f"]
 [ext_resource type="Script" path="res://scripts/StateMachine.gd" id="2_qn1ck"]
-[ext_resource type="Script" path="res://scripts/enemy_idle.gd" id="4_rvtwm"]
-[ext_resource type="Script" path="res://scripts/enemy_follow.gd" id="5_h5csx"]
+[ext_resource type="Script" path="res://scripts/states/EnemyStates/enemy_idle.gd" id="4_rvtwm"]
+[ext_resource type="Script" path="res://scripts/states/EnemyStates/enemy_follow.gd" id="5_h5csx"]
 [ext_resource type="PackedScene" uid="uid://dyp4ojovq0elh" path="res://scenes/Components/health_component.tscn" id="6_inxuh"]
-[ext_resource type="Script" path="res://scripts/enemy_kick.gd" id="6_nptm3"]
+[ext_resource type="Script" path="res://scripts/states/EnemyStates/enemy_kick.gd" id="6_nptm3"]
 [ext_resource type="PackedScene" uid="uid://cq8d67hl0uav4" path="res://scenes/Components/hit_box_component.tscn" id="7_unr17"]
 [ext_resource type="PackedScene" uid="uid://c2xun18unc734" path="res://scenes/Components/hurtbox.tscn" id="9_5bxk6"]
 
@@ -227,7 +227,6 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_rvtwm")
 enemy = NodePath("../..")
-start_follow = 100.0
 
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_h5csx")

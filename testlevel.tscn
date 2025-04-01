@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqjm328pveptl"]
+
+[ext_resource type="Script" path="res://BSPTreeStuff/BSPTree.gd" id="1_uj6ag"]
+[ext_resource type="TileSet" uid="uid://cvr7o8iu2bf4u" path="res://tile_sets/main_tileset.tres" id="2_85lqo"]
+[ext_resource type="PackedScene" uid="uid://mtsp0t13ef2m" path="res://scenes/player_refactor.tscn" id="3_6ds1f"]
+[ext_resource type="Script" path="res://scripts/ammo_counter.gd" id="3_qs5np"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_uj6ag")
+map_size = Vector2i(60, 30)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_85lqo")
+
+[node name="PlayerRefactor" parent="." instance=ExtResource("3_6ds1f")]
+
+[node name="Camera2D" type="Camera2D" parent="PlayerRefactor"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "Text"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_qs5np")

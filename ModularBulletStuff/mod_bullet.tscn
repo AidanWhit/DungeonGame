@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0qnwxx3rv6o1"]
+
+[ext_resource type="Script" path="res://ModularBulletStuff/BulletClass/base_bullet.gd" id="1_kriwb"]
+[ext_resource type="Texture2D" uid="uid://c2dimijy50cpv" path="res://sprites/weapons/All_Fire_Bullet_Pixel_16x16_00.png" id="1_vr3au"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxnmq"]
+atlas = ExtResource("1_vr3au")
+region = Rect2(96, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7oren"]
+atlas = ExtResource("1_vr3au")
+region = Rect2(112, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7b1v"]
+atlas = ExtResource("1_vr3au")
+region = Rect2(128, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml7fh"]
+atlas = ExtResource("1_vr3au")
+region = Rect2(144, 304, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vo32a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxnmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7oren")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7b1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml7fh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ile3"]
+radius = 2.0
+
+[node name="mod_bullet" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_kriwb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vo32a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("CircleShape2D_1ile3")

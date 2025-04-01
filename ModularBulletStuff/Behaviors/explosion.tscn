@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfsmfug1gn50f"]
+
+[ext_resource type="Script" path="res://ModularBulletStuff/Behaviors/particles.gd" id="1_e7gpy"]
+
+[sub_resource type="Curve" id="Curve_njbe7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.166271), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_82o1e"]
+min_value = -1.0
+_data = [Vector2(0.120112, 0.252732), 0.0, 0.0, 0, 0, Vector2(0.955307, 0.184798), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_njbe7")
+color = Color(0.864306, 0.33004, 0.354239, 1)
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_82o1e")
+script = ExtResource("1_e7gpy")

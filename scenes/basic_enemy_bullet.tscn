@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqlyym848t4sx"]
+[gd_scene load_steps=10 format=3 uid="uid://bqlyym848t4sx"]
 
+[ext_resource type="Script" path="res://scripts/enemies/basic_enemy_bullet.gd" id="1_5bsp6"]
 [ext_resource type="Texture2D" uid="uid://c2dimijy50cpv" path="res://sprites/weapons/All_Fire_Bullet_Pixel_16x16_00.png" id="1_6w1wk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41ix4"]
@@ -50,6 +51,8 @@ radius = 2.0
 height = 8.0
 
 [node name="basic_enemy_bullet" type="Area2D"]
+collision_layer = 256
+script = ExtResource("1_5bsp6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -1)
@@ -59,3 +62,6 @@ sprite_frames = SubResource("SpriteFrames_nmioq")
 position = Vector2(0.5, 0.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o2loe")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

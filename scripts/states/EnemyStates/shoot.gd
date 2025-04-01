@@ -6,7 +6,7 @@ extends State
 @export var shooting_range : float = 250.0
 @export var bullet_prefab : PackedScene
 @export var time_between_shot : float = 5.0
-var bullet_instance
+var bullet_instance : bullet
 var player : Player
 var move_direction : Vector2
 var timer : Timer = Timer.new()
@@ -14,9 +14,10 @@ func Enter() -> void:
 	if (bullet_prefab):
 		bullet_instance = bullet_prefab.instantiate()
 	player = get_tree().get_first_node_in_group("player")
+	get_parent().add_sibling(timer)
 	timer.wait_time = time_between_shot
 	timer.timeout.connect(Shoot)
-	
+	timer.start()
 
 
 func Update(delta: float) -> void:
@@ -33,4 +34,11 @@ func Update(delta: float) -> void:
 
 func Shoot() -> void:
 	bullet_instance = bullet_prefab.instantiate()
+	
+	bullet_instance.move_speed = 50
+	bullet_instance.global_position = enemy.global_position
+	bullet_instance.direction = player.global_position - enemy.global_position
+	bullet_instance.direction = bullet_instance.direction.normalized()
+	bullet_instance.global_rotation = enemy_weapon.global_rotation
+	
 	get_tree().root.add_child(bullet_instance)

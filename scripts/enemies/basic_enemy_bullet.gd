@@ -1,5 +1,4 @@
 extends bullet
-class_name bullet_player
 
 func _physics_process(delta: float) -> void:
 	position += direction * move_speed * delta
