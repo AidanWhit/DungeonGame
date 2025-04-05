@@ -2,11 +2,15 @@ extends player_weapon
 class_name gun
 
 @export var gun_texture : Texture2D
-@export var bullet_prefab : PackedScene = preload("res://scenes/bullet.tscn")
+@export var bullet_prefab : PackedScene = preload("res://ModularBulletStuff/mod_bullet.tscn")
 @export var max_ammo : int = 100
 @export var clip_size : int = 6
 @export var auto_fire_delay : float = 0.8
 var current_ammo = clip_size 
+
+var shot_type : Shot_Type = Shotgun_Shot.new()
+var shot_direction : Shot_Direction = Cross_Shot.new()
+
 signal shoot
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,11 +49,14 @@ func _process(delta: float) -> void:
 	
 
 func on_click() -> void:
-	var bullet_ist = bullet_prefab.instantiate()
-	bullet_ist.direction = get_global_mouse_position() - global_position
-	bullet_ist.direction = bullet_ist.direction.normalized()
-	
-	bullet_ist.rotation = rotation
-	bullet_ist.global_position = global_position
-	
-	get_tree().root.add_child(bullet_ist)
+	var direction = (get_global_mouse_position() - global_position).normalized()
+	for dir in shot_direction.calculate_directions(direction):
+		shot_type.create(bullet_prefab, global_position, dir, rotation, get_tree()) 
+	#var bullet_ist = bullet_prefab.instantiate()
+	#bullet_ist.direction = get_global_mouse_position() - global_position
+	#bullet_ist.direction = bullet_ist.direction.normalized()
+	#
+	#bullet_ist.rotation = rotation
+	#bullet_ist.global_position = global_position
+	#
+	#get_tree().root.add_child(bullet_ist)
