@@ -1,13 +1,11 @@
 extends Area2D
 class_name Hurtbox
-@export var damage_dealt : float = 1.0
 
-func _ready() -> void:
-	area_entered.connect(on_area_entered)
+@export var health_component : HealthComponent
 
-func on_area_entered(area: Area2D):
-	if area is HitBox:
-		var attack : Attack = Attack.new()
-		attack.attack_damage = damage_dealt
-		
-		(area as HitBox).damage(attack)
+signal damaged
+
+func damage(attack : Attack):
+	if (health_component):
+		health_component.damage(attack)
+		damaged.emit(attack.attack_damage)

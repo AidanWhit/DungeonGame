@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0qnwxx3rv6o1"]
+[gd_scene load_steps=11 format=3 uid="uid://b0qnwxx3rv6o1"]
 
 [ext_resource type="Script" path="res://ModularBulletStuff/BulletClass/base_bullet.gd" id="1_kriwb"]
 [ext_resource type="Texture2D" uid="uid://c2dimijy50cpv" path="res://sprites/weapons/All_Fire_Bullet_Pixel_16x16_00.png" id="1_vr3au"]
+[ext_resource type="Script" path="res://scripts/Components/Hitbox_Component.gd" id="3_ghcmx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxnmq"]
 atlas = ExtResource("1_vr3au")
@@ -42,8 +43,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ile3"]
 radius = 2.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fm6x"]
+radius = 3.53553
+
 [node name="mod_bullet" type="CharacterBody2D"]
 collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_kriwb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -52,3 +57,12 @@ sprite_frames = SubResource("SpriteFrames_vo32a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1.5)
 shape = SubResource("CircleShape2D_1ile3")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_ghcmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("CircleShape2D_4fm6x")

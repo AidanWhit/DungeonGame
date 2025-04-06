@@ -22,8 +22,8 @@ func _physics_process(delta: float) -> void:
 	for behavior in flight_behaviors:
 		behavior.Update_Flight(self, delta)
 	# enemies could have a hit method that can detected using the collison object. 
+	
 	if collision:
-		# execute additional behaviors
 		for i in collision_behaviors:
 			(i as coll_behavior).on_collision(self, collision)
 

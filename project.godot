@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Cat Shooter"
-run/main_scene="res://testlevel.tscn"
+run/main_scene="res://scenes/Levels/testing_level.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DamageNumbers="*res://scripts/Singletons/Damage_Numbers.gd"
 
 [dotnet]
 
