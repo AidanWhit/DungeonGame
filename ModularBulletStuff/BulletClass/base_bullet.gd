@@ -14,7 +14,7 @@ func _ready() -> void:
 	velocity = move_speed * direction
 	add_collision_behavior(explosion_behavior.new())
 	add_collision_behavior(bouncing_behavior.new(self))
-	add_flight_behavior(Follow_Mouse_Behavior.new())
+	add_flight_behavior(Homing_Behavior.new(self))
 
 
 func _physics_process(delta: float) -> void:

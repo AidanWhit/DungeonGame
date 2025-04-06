@@ -23,6 +23,10 @@ DamageNumbers="*res://scripts/Singletons/Damage_Numbers.gd"
 
 project/assembly_name="Cat Shooter"
 
+[global_group]
+
+enemies=""
+
 [input]
 
 left={
