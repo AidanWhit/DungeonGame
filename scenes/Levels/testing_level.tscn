@@ -10,7 +10,7 @@ tile_map_data = PackedByteArray("AAApABEAAAAJAAMAAAApABAAAAALAAMAAAApAA8AAAAHAAQ
 tile_set = ExtResource("1_w8tge")
 
 [node name="PlayerRefactor" parent="." instance=ExtResource("2_pah15")]
-position = Vector2(322, 123)
+position = Vector2(321, 135)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerRefactor"]
 zoom = Vector2(2, 2)

@@ -5,6 +5,10 @@
 * Create slowing/freeze behavior
 * ~~Reload Timer for Weapons~~
 * Figure out how to structure weapons that have a certain amount of upgrade slots
+* direction and velocity should be seperated as a bullet's direction will not necessarily always be the same as velocity
+	- When using the flight path modifiers, the bullets overall path is much different than its direction
+	- However in instances like homing and following the mouse, the direction should be identical 
+	- If this is the case, every physics process, the velocity of the bullet would have to be set to the move_speed * direction
 
 # Known Bugs
 * ~~When rolling, the enemies bullet can get stuck in the player causing it to disappear. The character collider still collides with the bullet
