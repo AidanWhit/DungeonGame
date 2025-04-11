@@ -6,6 +6,10 @@
 * ~~Reload Timer for Weapons~~
 * Figure out how to structure weapons that have a certain amount of upgrade slots
 
+# Known Bugs
+* ~~When rolling, the enemies bullet can get stuck in the player causing it to disappear. The character collider still collides with the bullet
+and not the hurtbox~~
+	- Fixed but, seems like a hacky fix to me
 
 # Inventory Ideas
 * The player has an inventory that they can use to hold modular upgrades (dmg, pierce, homing, shot type, etc.)

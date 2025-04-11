@@ -10,8 +10,8 @@ class_name gun
 var current_ammo = clip_size 
 
 
-var shot_type : Shot_Type = Shotgun_Shot.new()
-var shot_direction : Shot_Direction = Cross_Shot.new()
+var shot_type : Shot_Type = single_shot.new()
+var shot_direction : Shot_Direction = ForwardShot.new()
 
 signal shoot
 # Called when the node enters the scene tree for the first time.

@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://3rn75jhcutqd"]
+
+[ext_resource type="Script" path="res://scripts/enemies/basic_enemy_bullet.gd" id="1_kg5v8"]
+[ext_resource type="Texture2D" uid="uid://c2dimijy50cpv" path="res://sprites/weapons/All_Fire_Bullet_Pixel_16x16_00.png" id="1_v31dm"]
+[ext_resource type="Script" path="res://scripts/Components/Hitbox_Component.gd" id="2_2xe7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha4vv"]
+atlas = ExtResource("1_v31dm")
+region = Rect2(0, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo00o"]
+atlas = ExtResource("1_v31dm")
+region = Rect2(16, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqhck"]
+atlas = ExtResource("1_v31dm")
+region = Rect2(32, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ywf"]
+atlas = ExtResource("1_v31dm")
+region = Rect2(48, 320, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b6d4"]
+atlas = ExtResource("1_v31dm")
+region = Rect2(64, 320, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm6op"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha4vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo00o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqhck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ywf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b6d4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5h81"]
+radius = 2.54951
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdgle"]
+radius = 3.53553
+
+[node name="enemy_bullet" type="CharacterBody2D"]
+collision_layer = 256
+collision_mask = 3
+script = ExtResource("1_kg5v8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jm6op")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("CircleShape2D_t5h81")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("2_2xe7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("CircleShape2D_wdgle")

@@ -8,13 +8,11 @@ class_name player_bullet
 var destroy_on_coll : bool = true
 var direction
 
-var collision_behaviors : Array = []
+var collision_behaviors : Array = [Cross_Split.new(), bouncing_behavior.new(self), explosion_behavior.new()]
 var flight_behaviors : Array[FlightBehavior] = []
 func _ready() -> void:
 	velocity = move_speed * direction
-	add_collision_behavior(explosion_behavior.new())
-	add_collision_behavior(bouncing_behavior.new(self))
-	add_flight_behavior(Homing_Behavior.new(self))
+
 
 
 func _physics_process(delta: float) -> void:

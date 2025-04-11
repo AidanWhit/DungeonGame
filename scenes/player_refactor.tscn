@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://mtsp0t13ef2m"]
+[gd_scene load_steps=42 format=3 uid="uid://mtsp0t13ef2m"]
 
 [ext_resource type="Script" path="res://scripts/PlayerRefactor/player_refactor.gd" id="1_4c6k1"]
 [ext_resource type="Texture2D" uid="uid://d030ock5cevqy" path="res://sprites/Entities/knight.png" id="1_43jng"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/PlayerRefactor/roll.gd" id="5_xu83i"]
 [ext_resource type="Script" path="res://scripts/gun.gd" id="6_yfuq2"]
 [ext_resource type="Texture2D" uid="uid://cteygj210qkgr" path="res://sprites/weapons/39.png" id="7_1l6xv"]
+[ext_resource type="Script" path="res://scripts/Components/hurtbox_component.gd" id="8_mj6dw"]
+[ext_resource type="Script" path="res://scripts/Components/health_component.gd" id="9_nvka1"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="10_f0788"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtrm1"]
 atlas = ExtResource("1_43jng")
@@ -225,6 +228,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3g8l"]
 size = Vector2(10, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36t0r"]
+size = Vector2(12, 16)
+
 [node name="PlayerRefactor" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_4c6k1")
@@ -256,3 +262,29 @@ roll_speed = 150.0
 position = Vector2(11, 0)
 script = ExtResource("6_yfuq2")
 gun_texture = ExtResource("7_1l6xv")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 256
+script = ExtResource("8_mj6dw")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_36t0r")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("9_nvka1")
+max_health = 5.0
+
+[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health")]
+modulate = Color(1, 0, 0, 1)
+offset_left = -14.0
+offset_top = 13.0
+offset_right = 16.0
+offset_bottom = 20.0
+step = 1.0
+value = 100.0
+show_percentage = false
+script = ExtResource("10_f0788")
+health = NodePath("../HealthComponent")

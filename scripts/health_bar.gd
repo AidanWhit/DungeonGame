@@ -14,5 +14,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if (health):
 		if (displayed_health != health.current_health):
+			print("health lowered")
 			displayed_health = health.current_health
 			value = displayed_health

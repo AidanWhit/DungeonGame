@@ -1,11 +1,8 @@
 extends coll_behavior
 class_name explosion_behavior
 
-var particles_scene : PackedScene
-var explosion_hitbox : PackedScene
-func _init() -> void:
-	particles_scene = preload("res://ModularBulletStuff/Behaviors/explosion.tscn")
-	explosion_hitbox = preload("res://scenes/bullet_stuff/bullet_explosion_hitbox.tscn")
+var particles_scene : PackedScene = preload("res://ModularBulletStuff/Behaviors/CollisionBehaviors/explosion.tscn")
+var explosion_hitbox : PackedScene = preload("res://scenes/bullet_stuff/bullet_explosion_hitbox.tscn")
 
 func on_collision(bullet : player_bullet, collision : KinematicCollision2D):
 	var particles : CPUParticles2D = particles_scene.instantiate()

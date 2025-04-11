@@ -6,7 +6,7 @@ func _init(bullet: Node2D) -> void:
     enemies = bullet.get_tree().get_nodes_in_group("enemies")
     #print(enemies)
 func Update_Flight(bullet: Node2D, _delta : float) -> void:
-    
+    enemies = bullet.get_tree().get_nodes_in_group("enemies")
     var closet_enemy
     var min_dist = 100000000000000000
     
